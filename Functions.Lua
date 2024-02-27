@@ -1,4 +1,7 @@
 local Players = game:GetService("Players")
+local Stats = game:GetService("Stats")
+
+local PerformanceStats = Stats.PerformanceStats
 local Player = Players.LocalPlayer
 
 local Balls = workspace:WaitForChild("Balls", 9e9)
@@ -31,11 +34,14 @@ local function IsTarget(Ball)
   local target = Ball:GetAttribute("target")
   return target and target == Player.Name
 end
+local function GetPing()
+  return PerformanceStats.Ping:GetValue()
+end
 
 return ({
   GetRealBall = GetRealBall,
   IsTarget = IsTarget,
   IsAlive = IsAlive,
   GetNear = GetNear,
-  
+  GetPing = GetPing
 })
